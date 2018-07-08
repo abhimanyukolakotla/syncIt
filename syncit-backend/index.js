@@ -1,12 +1,18 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
 var VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 var fs = require('fs');
 var Tesseract = require('tesseract.js')
 const CircularJSON = require('circular-json');
 
 var app = express();
+app.use(morgan('dev'));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/imageRecognition', function (req, res) {
+  console.log('REQUEST RECEIVED');
   var visualRecognition = new VisualRecognitionV3({
     url: 'https://gateway.watsonplatform.net/visual-recognition/api',
     version: '2018-03-19',
@@ -37,8 +43,9 @@ app.get('/imageRecognition', function (req, res) {
 });
 
 
-app.get('/textRecognition', function (req, res) {
-  Tesseract.recognize('C://Users//IBM_ADMIN//Desktop//lays-dill-pickle.jpg')
+app.post('/api/textRecognition', function (req, res) {
+  console.log('REQUEST FOR POST RECEIVED', req.body);
+  Tesseract.recognize(req.body.imageData)
     .then(function (result) {
       res.set({
         'Access-Control-Allow-Origin': 'http://localhost:8100',

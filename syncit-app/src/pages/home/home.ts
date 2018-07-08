@@ -4,11 +4,12 @@ import { LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import Tesseract from 'tesseract.js'
 import visualRecognitionV3 from 'watson-developer-cloud/visual-recognition/v3'
-import fs from 'fs'
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [HttpService]
 })
 export class HomePage {
 
@@ -24,12 +25,12 @@ export class HomePage {
     iam_url: 'https://appid-management.ng.bluemix.net/management/v4/', // Optional
   });
 
-  constructor(private camera: Camera, public loadingCtrl: LoadingController) {
+  constructor(private camera: Camera, 
+              public loadingCtrl: LoadingController, 
+              private httpService:HttpService) {
     //Using watson to recognise the images
-
-
-
   }
+
   presentLoading() {
     this.loader = this.loadingCtrl.create({
       content: "Please wait...",
@@ -47,6 +48,23 @@ export class HomePage {
 
   }
 
+  
+  testGet() {
+    this.httpService
+      .getImage()
+      .subscribe((response) => {
+        console.log('response', response);
+      });
+  }
+
+  testPost() {
+    this.httpService
+      .sendImage('C:\\Users\\abhim\\Downloads\\IMG_20180404_170142.jpg')
+      .subscribe((response) => {
+        console.log('response', response);
+      });
+  }
+
   takePicture() {
     this.presentLoading();
     this.camera.getPicture({
@@ -56,13 +74,12 @@ export class HomePage {
     }).then((imageData) => {
       // imageData is a base64 encoded string
       this.base64Image = "data:image/jpeg;base64," + imageData;
-      Tesseract.recognize(this.base64Image)
-        .then((result) => {
-          console.log(result);
-          this.output = result.html;
-          this.loader.dismiss();
-        });
-
+      this.httpService
+      .sendImage(this.base64Image)
+      .subscribe((response) => {
+        console.log('response', response);
+        this.loader.dismiss();
+      });
     }, (err) => {
       console.log(err);
       this.loader.dismiss();

@@ -3,44 +3,21 @@
         <ion-title>
             SyncIt
         </ion-title>
+        <ion-buttons end>
+            <button (click)="takePicture()">
+                <ion-icon name="md-camera" class="camera-icon"></ion-icon>
+            </button>    
+        </ion-buttons>
+        <ion-content>
+         </ion-content>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
     <ion-grid>
         <ion-row>
-            <ion-col col-6>
-                <ion-card>
-                    <!--img src="img/card-saopaolo.png"/-->
-                    <ion-icon ios="ios-stats" md="md-stats" item-start></ion-icon>
-                    Stats
-                </ion-card>
-                <ion-card>
-                    <ion-card-content>
-                        Hello World, this is my camera app
-
-                        <button (click)="takePicture()">Take a Picture</button> Latest Picture:
-                        <img [src]="base64Image" *ngIf="base64Image" />
-                       <!--  <button (click)="takeManual()">Take Manual</button>
-                        <div [innerHtml]="output"></div> -->
-                    </ion-card-content>
-                </ion-card>
-
-            </ion-col>
-            <ion-col col-6>
-                <ion-card>
-                    <ion-icon ios="ios-help-circle" md="md-help-circle" item-start></ion-icon>
-                    Help
-                </ion-card>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col col-12>
-                <ion-card>
-                    <ion-card-content>
-                        <div [innerHtml]="output"></div>
-                    </ion-card-content>
-                </ion-card>
+            <ion-col col-4>
+                <img [src]="base64Image" *ngIf="base64Image" />
             </ion-col>
         </ion-row>
     </ion-grid>
