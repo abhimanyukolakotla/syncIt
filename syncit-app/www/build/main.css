@@ -25685,3 +25685,7 @@ page-home .camera-icon {
 page-home button {
   background: #fff;
 }
+
+page-home .chart {
+  height: 50%;
+}

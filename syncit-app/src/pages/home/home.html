@@ -13,12 +13,18 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-grid>
+<ion-content fullscreen padding>
+    <!-- <ion-grid>
         <ion-row>
             <ion-col col-4>
                 <img [src]="base64Image" *ngIf="base64Image" />
             </ion-col>
         </ion-row>
-    </ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <canvas #barCanvas class="chart"></canvas>
+            </ion-col>
+        </ion-row>
+    </ion-grid> -->
+    <canvas #barCanvas class="chart"></canvas>
 </ion-content>
