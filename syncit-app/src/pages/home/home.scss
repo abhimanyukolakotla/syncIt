@@ -8,7 +8,10 @@ page-home {
     }
 
     .chart {
-        height: 50%;
+        height: 100% !important;
     }
 
+    .chart-container {
+        display: block;
+    }
 }

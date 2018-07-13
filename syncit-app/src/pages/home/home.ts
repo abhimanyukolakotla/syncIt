@@ -26,11 +26,19 @@ export class HomePage {
     iam_apikey: '9qetdH-6WQCBFB_2kiEsiPF_ToLHPkruhZuVZK6RjsGR',
     iam_url: 'https://appid-management.ng.bluemix.net/management/v4/', // Optional
   });
-
+  options: any; 
+  
   constructor(private camera: Camera, 
               public loadingCtrl: LoadingController, 
               private httpService:HttpService) {
     //Using watson to recognise the images
+    /* this.options = {
+        title : { text : 'simple chart' },
+        series: [{
+            data: [29.9, 71.5, 106.4, 129.2],
+        }]
+    }; */
+
   }
 
   presentLoading() {
@@ -87,8 +95,22 @@ export class HomePage {
       this.loader.dismiss();
     });
   }
-
-    ionViewDidLoad() {  
+    ionViewDidLoad() {
+      this.httpService.getData('carbohydrates', '2018-07-01', '2018-07-11')
+      .then((response) => {
+        let dataArray = response['data'];
+        let labelArray = response['labels'];
+        let legend = response['legend'];
+        this.options =  {
+              title : { text :  legend},
+              series: [{
+                  type: 'area',
+                  data: dataArray,
+              }]
+          };;     
+      });
+    }
+    ionViewDidLoad1() {  
         this.httpService.getData('carbohydrates', '2018-07-01', '2018-07-11')
                 .then((response) => {
                   let dataArray = response['data'];
