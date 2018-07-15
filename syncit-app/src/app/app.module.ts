@@ -10,11 +10,13 @@ import * as highcharts from 'highcharts';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { ChartPage } from '../pages/charts/chart';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ChartPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ChartPage
   ],
   providers: [
     StatusBar,
