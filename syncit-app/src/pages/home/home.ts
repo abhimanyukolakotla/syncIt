@@ -7,6 +7,7 @@ import Tesseract from 'tesseract.js'
 import visualRecognitionV3 from 'watson-developer-cloud/visual-recognition/v3'
 import { HttpService } from '../../services/http.service';
 import { transform } from 'lodash';
+import { ChartPage } from '../charts/chart';
 
 @Component({
   selector: 'page-home',
@@ -30,7 +31,8 @@ export class HomePage {
   options: any; 
   
   constructor(private camera: Camera, 
-              public loadingCtrl: LoadingController, 
+              public loadingCtrl: LoadingController,
+              private navCtrl: NavController, 
               private httpService:HttpService) {
     //Using watson to recognise the images
     /* this.options = {
@@ -42,6 +44,9 @@ export class HomePage {
 
   }
 
+  goToOtherPage() {
+    this.navCtrl.push(ChartPage);
+  }
   presentLoading() {
     this.loader = this.loadingCtrl.create({
       content: "Please wait...",

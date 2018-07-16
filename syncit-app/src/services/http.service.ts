@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { dataJson, dataResponse } from '../utils/constants';
 
 @Injectable()
 export class HttpService {
@@ -34,45 +35,16 @@ export class HttpService {
     }
 
     getData(name, from, to) {
-        /* return new Promise((resolve, reject) => {
-            resolve({
-                    data: [10, 40, 15, 46, 77.7, 20.4, 34.66, 22.4, 55.1, 83.7],
-                    labels: ['2018-07-01', '2018-07-02', '2018-07-03', '2018-07-04', '2018-07-05',
-                            '2018-07-06', '2018-07-07', '2018-07-08', '2018-07-09', '2018-07-10'            
-                    ],
-                    legend: 'Carbohydrate levels'
-                }
-            )
-        });  */   
         return new Promise((resolve, reject) => {
-            resolve({
-                    results: [
-                        {
-                            data: [1, 50, 15, 33, 34.7, 20.4, 44.66, 22.4, 5.1, 22.7],
-                            labels: ['2018-07-01', '2018-07-02', '2018-07-03', '2018-07-04', '2018-07-05',
-                                    '2018-07-06', '2018-07-07', '2018-07-08', '2018-07-09', '2018-07-10'            
-                            ],
-                            legend: 'Carbohydrate levels'
-                        }, 
-                        {
-                            data: [10, 40, 125, 46, 77.7, 20.4, 34.66, 22.4, 85.1, 29.7],
-                            labels: ['2018-07-01', '2018-07-02', '2018-07-03', '2018-07-04', '2018-07-05',
-                                    '2018-07-06', '2018-07-07', '2018-07-08', '2018-07-09', '2018-07-10'            
-                            ],
-                            legend: 'Proteins'
-                        },
-                        {
-                            data: [10, 40, 15, 46, 7.7, 22.4, 34.66, 22.4, 45.1, 34.7],
-                            labels: ['2018-07-01', '2018-07-02', '2018-07-03', '2018-07-04', '2018-07-05',
-                                    '2018-07-06', '2018-07-07', '2018-07-08', '2018-07-09', '2018-07-10'            
-                            ],
-                            legend: 'Fats'
-                        }
-                    ]
-                });
+            resolve(
+                dataResponse
+              );
             });
     }
     
+    private convertToMillisecs(date) {
+        return new Date(date).valueOf();
+    }
     private extractData(res: Response) {
         let body = res.json();
             return body || {};

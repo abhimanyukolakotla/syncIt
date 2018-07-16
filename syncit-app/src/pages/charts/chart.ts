@@ -19,42 +19,45 @@ export class ChartPage {
     this.httpService.getData('carbohydrates', '2018-07-01', '2018-07-11')
     .then((response) => {
       let dataArray = this.transformResponse(response);//response['results'];
-      let labelArray = response['labels'];
+      let labelArray = this.transformXAxisLabels(response);
       let legend = response['legend'];
       this.options =  {
             chart: {
               type: 'line'
             },
-            title : { text :  legend},
+            xAxis: {
+              labels: {
+                formatter: function() {
+                  return new Date(this.value).toDateString();
+                }
+              }
+            },   
+          tooltip: {
+              formatter: function() {
+                return '<div class="tooltip-container">The value for <b>' + this.series.name + '</b> on <b>' + new Date(this.x).toDateString() + '</b><br /> is <b>' + this.y + '</b></div>';
+              }
+          },
+           /*  xAxis: {
+              categories: labelArray
+            }, */
+            //title : { text :  legend},
             /* series: [{
                 type: 'area',
                 data: dataArray,
             }] */
-            series: dataArray,
             
-          
-        };;     
+            series: dataArray          
+        };     
     });
   }
 
+  transformXAxisLabels(responseData) {
+    return responseData.results[0].labels;
+  }
+
   transformResponse(responseData) {
-    return transform(responseData.results, (accumulator, value) => {
+    return transform(responseData.results, (accumulator, value, index) => {
       accumulator.push({'data': value.data, 'name': value.legend});
     }, []);
-    /* {
-      data: [10, 40, 15, 46, 77.7, 20.4, 34.66, 22.4, 55.1, 83.7],
-      labels: ['2018-07-01', '2018-07-02', '2018-07-03', '2018-07-04', '2018-07-05',
-              '2018-07-06', '2018-07-07', '2018-07-08', '2018-07-09', '2018-07-10'            
-      ],
-      legend: 'Carbohydrate levels'
-  } */
-
-    /* [{
-        name: 'Jane',
-        data: [1, 0, 4]
-    }, {
-        name: 'John',
-        data: [5, 7, 3]
-    }] */
   }
 }
