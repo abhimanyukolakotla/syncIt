@@ -3,11 +3,15 @@
         <ion-title>
             SyncIt
         </ion-title>
-        <ion-buttons end>
+       
+        <!-- <ion-buttons end>
+            <button ion-button icon-only>
+                <ion-icon name="search"></ion-icon>
+            </button>
             <button color="light" icon-only ion-button (click)="takePicture()">
                 <ion-icon name="md-camera" class="camera-icon"></ion-icon>
             </button>    
-        </ion-buttons>
+        </ion-buttons> -->
         <ion-content>
          </ion-content>
     </ion-navbar>
@@ -30,7 +34,19 @@
     <!-- <chart class="chart-container" [options]="options"></chart> -->
     <ion-card (click)="goToOtherPage()">
         <img src="assets/imgs/food-dinner-lunch.jpg"/>
-        <div class="card-title">Your intake Stats</div>
+        <div class="card-title">Nutritional Management</div>
         <div class="card-subtitle">Check your intake amount here</div>
     </ion-card>
+    <ion-card (click)="goToOtherPage()">
+            <img src="assets/imgs/food-analyser.jpg"/>
+            <div class="card-title">Food Analyser</div>
+            <div class="card-subtitle"></div>
+        </ion-card>
+    <ion-fab right bottom>
+        <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
+        <ion-fab-list side="left">
+            <button ion-fab (click)="takePicture()"><ion-icon name="md-camera" class="camera-icon"></ion-icon></button>
+            <button ion-fab><ion-icon name="mic"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
 </ion-content>
