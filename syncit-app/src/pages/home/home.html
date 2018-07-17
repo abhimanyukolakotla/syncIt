@@ -80,26 +80,16 @@
                 </ion-col>
             </ion-row>
           </ion-grid>
-    <!-- <ion-card >
-        <img src="assets/imgs/food-dinner-lunch.jpg"/>
-        <div class="card-title">Nutritional Management</div>
-        <div class="card-subtitle">Check your intake amount here</div>
-    </ion-card>
-    <ion-card >
-        <img src="assets/imgs/food-analyser.jpg"/>
-        <div class="card-title">Personal Insights</div>
-        <div class="card-subtitle">Know yourself</div>
-    </ion-card>
-    <ion-card >
-        <img src="assets/imgs/food-analyser.jpg"/>
-        <div class="card-title">Medical Condition</div>
-        <div class="card-subtitle"></div>
-    </ion-card> -->
     <ion-fab right bottom>
         <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
         <ion-fab-list side="left">
-            <button ion-fab (click)="showPrompt()"><ion-icon name="md-camera" class="camera-icon"></ion-icon></button>
-            <button ion-fab><ion-icon name="mic"></ion-icon></button>
+            <button ion-fab (click)="showPrompt()" color="primary"><ion-icon name="md-camera" class="camera-icon"></ion-icon></button>
+            
+            <button ion-fab color="secondary" (click)="captureAudio()"> 
+                <ion-icon name="mic-off" *ngIf="recording"></ion-icon>
+                <ion-icon name="mic" *ngIf="!recording"></ion-icon>
+            </button>
+           <!-- <button ion-fab (click)="captureAudio()" color="secondary"><ion-icon name="mic" ></ion-icon></button> -->
         </ion-fab-list>
     </ion-fab>
 </ion-content>

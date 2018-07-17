@@ -1,19 +1,22 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Loading, AlertController } from 'ionic-angular';
+import { NavController, Loading, AlertController, Platform } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
-import { Chart } from 'chart.js';
-import Tesseract from 'tesseract.js'
-import visualRecognitionV3 from 'watson-developer-cloud/visual-recognition/v3'
+import { Camera } from '@ionic-native/camera';
 import { HttpService } from '../../services/http.service';
-import { transform } from 'lodash';
-import { ChartPage } from '../charts/chart';
+import { ChartPage } from '../charts/chart'; 
 import { IMAGE_TYPE } from '../../utils/constants';
 import { MedicalConditionPage } from '../medical-condition/medical-condition';
 
+import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture';
+import { Storage } from '@ionic/storage';
+import { Media, MediaObject } from '@ionic-native/media';
+import { File as IonicFile } from '@ionic-native/file';
+
+const MEDIA_FILES_KEY = 'mediaFiles';
+
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html',
+  templateUrl: 'home.html', 
   providers: [HttpService]
 })
 export class HomePage {
@@ -23,13 +26,34 @@ export class HomePage {
   base64Image: string;
   output: string;
   loader: Loading;
-  options: any; 
+  options: any;
+  mediaFiles = []; 
+  
+
+  recording: boolean = false;
+  filePath: string;
+  fileName: string;
+  audio: MediaObject;
+  audioList: any[] = [];
   
   constructor(private camera: Camera, 
               private loadingCtrl: LoadingController,
               private navCtrl: NavController,
-              private alertCtrl: AlertController, 
-              private httpService:HttpService) {}
+              private alertCtrl: AlertController,
+              private mediaCapture: MediaCapture,
+              private storage: Storage, 
+              private media: Media,
+              private file: IonicFile,
+              public platform: Platform,
+              private httpService:HttpService) {
+              }
+
+              
+  ionViewDidLoad() {
+    this.storage.get(MEDIA_FILES_KEY).then(res => {
+      this.mediaFiles = JSON.parse(res) || [];
+    })
+  }
 
   goToOtherPage(data) {
     this.navCtrl.push(ChartPage, {'data': data, 'image': this.base64Image});
@@ -37,6 +61,64 @@ export class HomePage {
 
   goToMedicalConditionPage() {
     this.navCtrl.push(MedicalConditionPage);
+  }
+
+  captureAudio() {
+    /* this.mediaCapture.captureAudio().then(res => {
+      //this.storeMediaFiles(res);
+    }, (err: CaptureError) => console.error(err)); */
+
+    
+    this.presentLoading();
+    
+    if(this.recording)
+      this.stopRecord();
+    else
+      this.startRecord();
+    
+   
+  }
+
+  /******* NEW *******/
+  startRecord() {
+    if (this.platform.is('ios')) {
+      this.fileName = 'record'+new Date().getDate()+new Date().getMonth()+new Date().getFullYear()+new Date().getHours()+new Date().getMinutes()+new Date().getSeconds()+'.3gp';
+      this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + this.fileName;
+      this.audio = this.media.create(this.filePath);
+    } else if (this.platform.is('android')) {
+      this.fileName = 'record'+new Date().getDate()+new Date().getMonth()+new Date().getFullYear()+new Date().getHours()+new Date().getMinutes()+new Date().getSeconds()+'.3gp';
+      this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.fileName;
+      this.audio = this.media.create(this.filePath);
+    }
+    this.audio.startRecord();
+    this.recording = true;
+    
+    this.loader.dismiss();
+  }
+
+  stopRecord() {
+    this.audio.stopRecord();
+    let data = { filename: this.fileName };
+    this.audioList.push(data);
+    localStorage.setItem("audiolist", JSON.stringify(this.audioList));
+    this.recording = false;
+    
+    this.loader.dismiss();
+    //this.getAudioList();
+  }
+
+  
+  storeMediaFiles(files) {
+    this.storage.get(MEDIA_FILES_KEY).then(res => {
+      if (res) {
+        let arr = JSON.parse(res);
+        arr = arr.concat(files);
+        this.storage.set(MEDIA_FILES_KEY, JSON.stringify(arr));
+      } else {
+        this.storage.set(MEDIA_FILES_KEY, JSON.stringify(files))
+      }
+      this.mediaFiles = this.mediaFiles.concat(files);
+    })
   }
 
   presentLoading() {

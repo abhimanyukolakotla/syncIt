@@ -25678,6 +25678,18 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+.chart {
+  height: 100% !important;
+}
+
+.chart-container {
+  display: block;
+}
+
+.tooltip-container {
+  width: 50px;
+}
+
 page-home .camera-icon {
   font-size: 20pt;
 }
@@ -25686,6 +25698,29 @@ page-home button {
   background: #fff;
 }
 
-page-home .chart {
-  height: 50%;
+page-home .card-background-page ion-card {
+  position: relative;
+  margin: 2.5px;
+}
+
+page-home .card-background-page .card-title {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+page-home .card-background-page .card-subtitle {
+  font-size: 0.5em;
+  position: absolute;
+  top: 52%;
+  width: 100%;
+  color: #fff;
+}
+
+.table-header {
+  background: #488aff;
+  color: #fff;
+}
+
+.table-header .col:first-child {
+  border: none;
 }

@@ -13,6 +13,11 @@ import { HomePage } from '../pages/home/home';
 import { ChartPage } from '../pages/charts/chart';
 import { MedicalConditionPage } from '../pages/medical-condition/medical-condition';
 
+import { MediaCapture } from '@ionic-native/media-capture';
+import { Media } from '@ionic-native/media';
+import { File  as IonicFile } from '@ionic-native/file'; 
+import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -24,7 +29,8 @@ import { MedicalConditionPage } from '../pages/medical-condition/medical-conditi
     BrowserModule,
 	  HttpModule,
     IonicModule.forRoot(MyApp),
-    ChartModule.forRoot(highcharts)
+    ChartModule.forRoot(highcharts),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -37,7 +43,10 @@ import { MedicalConditionPage } from '../pages/medical-condition/medical-conditi
     StatusBar,
     SplashScreen,
     Camera,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MediaCapture,
+    Media,
+    IonicFile
   ]
 })
 export class AppModule {}
