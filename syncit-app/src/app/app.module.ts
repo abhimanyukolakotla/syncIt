@@ -11,12 +11,14 @@ import * as highcharts from 'highcharts';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ChartPage } from '../pages/charts/chart';
+import { MedicalConditionPage } from '../pages/medical-condition/medical-condition';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ChartPage
+    ChartPage,
+    MedicalConditionPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { ChartPage } from '../pages/charts/chart';
   entryComponents: [
     MyApp,
     HomePage,
-    ChartPage
+    ChartPage,
+    MedicalConditionPage
   ],
   providers: [
     StatusBar,

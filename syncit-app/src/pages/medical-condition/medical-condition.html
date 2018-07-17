@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Medical Condition</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- Segment in content -->
+  <ion-segment [(ngModel)]="type" color="primary" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="medication">
+      Medication
+    </ion-segment-button>
+    <ion-segment-button value="vitals">
+      Vitals
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-content [ngSwitch]="type" fullscreen>
+        <ion-grid *ngSwitchCase="'medication'">
+            <ion-card>
+                <ion-card-header>
+                    <ion-row text-center class="table-header">
+                        <ion-col col-6 class="table-header-column">Medicine Name</ion-col>
+                        <ion-col col-6 class="table-header-column">Usage</ion-col>
+                    </ion-row>            
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-row *ngFor="let item of medicationData">
+                        <ion-col col-6>{{item.medicinename | titlecase }}</ion-col>
+                        <ion-col col-6>{{item.use}}</ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </ion-grid>
+      
+        <ion-grid *ngSwitchCase="'vitals'">
+                <ion-card>
+                        <ion-card-header>
+                            <ion-row text-center class="table-header">
+                                <ion-col col-6 class="table-header-column">Vitals Name</ion-col>
+                                <ion-col col-6 class="table-header-column">Usage</ion-col>
+                            </ion-row>            
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-row *ngFor="let item of vitalsData">
+                                <ion-col col-6>{{item.vitals | titlecase }}</ion-col>
+                                <ion-col col-6 text-center>{{item.value}}</ion-col>
+                            </ion-row>
+                        </ion-card-content>
+                    </ion-card>
+        </ion-grid>
+    </ion-content>
+</ion-content>

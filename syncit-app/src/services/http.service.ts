@@ -3,11 +3,15 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { dataJson, dataResponse } from '../utils/constants';
+import { dataJson, dataResponse, IMAGE_TYPE, medicationConditionResponse, vitalsResponse } from '../utils/constants';
 
 @Injectable()
 export class HttpService {
-    url = "/api/textRecognition";
+    //USE BELOW FOR LOCAL TESTING
+    //baseUrl = "/api";
+    // USE BELOW FOR APP DEPLOYMENT
+    baseUrl = "https://syncit-backend-prod.mybluemix.net/backend";
+    url     = "/textRecognition";
     
     constructor(private http: Http) {}
 
@@ -24,14 +28,43 @@ export class HttpService {
         let options = new RequestOptions({ headers: headers });
 
         return this.http.post(this.url, formData, options)
-        .map(this.extractData)
-        .catch(this.handleErrorPromise)
+                        .map(this.extractData)
+                        .catch(this.handleErrorPromise)
     }
 
-    getImage() {
-        return this.http.get('api/imageRecognition')
+    getMedicalConditions() {
+        return new Promise((resolve, reject) => {
+            resolve(medicationConditionResponse);
+        });
+    }
+
+    getVitals() {
+        return new Promise((resolve, reject) => {
+            resolve(vitalsResponse);
+        });        
+    }
+
+    sendImageForRecognition(imageData, type) {
+        switch(type) {
+            case IMAGE_TYPE.IMAGE_LABEL:
+                return this.performTextRecognition();
+            case IMAGE_TYPE.IMAGE_FOOD:
+            default:
+                return this.performImageRecognition();
+          
+                
+        }
+    }
+    performImageRecognition() {
+        return this.http.get(this.baseUrl + '/imageRecognition')
                     .map(this.extractData)
                     .catch(this.handleErrorPromise)
+    }
+
+    performTextRecognition() {
+        return this.http.get(this.baseUrl + '/textRecognition')
+        .map(this.extractData)
+        .catch(this.handleErrorPromise)
     }
 
     getData(name, from, to) {

@@ -32,20 +32,73 @@
     </ion-grid> -->
     <!-- <canvas #barCanvas class="chart"></canvas> -->
     <!-- <chart class="chart-container" [options]="options"></chart> -->
-    <ion-card (click)="goToOtherPage()">
+    <ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <ion-card (click)="goToOtherPage()">
+                   <!--  <img src="assets/imgs/food-dinner-lunch.jpg"/>
+                    <div class="card-title">Nutritional Management</div>
+                    <div class="card-subtitle">Check your intake amount here</div> -->
+                    <img src="assets/imgs/food-dinner-lunch.jpg"/>
+                    <ion-card-content>
+                        <ion-card-title>
+                                Nutritional Management
+                        </ion-card-title>
+                        <p>Check your intake amount here</p>
+                    </ion-card-content>
+                </ion-card>
+              </ion-col>              
+            </ion-row>
+            <ion-row>
+                <ion-col col-6>
+                    <ion-card>
+                        <!-- <img src="assets/imgs/ibm-watson.png"/>
+                        <div class="card-title" >Personal Insights</div>
+                        <div class="card-subtitle">Know yourself</div> -->
+                        <img src="assets/imgs/ibm-watson.png"/>
+                        <ion-card-content>
+                                <ion-card-title>
+                                        Personal Insights
+                                </ion-card-title>
+                                <p>Know yourself</p>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-card (click)="goToMedicalConditionPage()">
+                        <!-- <img src="assets/imgs/medical-insights.jpg"/>
+                        <div class="card-title">Medical Condition</div>
+                        <div class="card-subtitle"></div> -->
+                        <img src="assets/imgs/medical-insights.jpg"/>
+                        <ion-card-content>
+                                <ion-card-title>
+                                        Medical Condition
+                                </ion-card-title>
+                                <p>Track your medical condition</p>
+                            </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+    <!-- <ion-card >
         <img src="assets/imgs/food-dinner-lunch.jpg"/>
         <div class="card-title">Nutritional Management</div>
         <div class="card-subtitle">Check your intake amount here</div>
     </ion-card>
-    <ion-card (click)="goToOtherPage()">
-            <img src="assets/imgs/food-analyser.jpg"/>
-            <div class="card-title">Food Analyser</div>
-            <div class="card-subtitle"></div>
-        </ion-card>
+    <ion-card >
+        <img src="assets/imgs/food-analyser.jpg"/>
+        <div class="card-title">Personal Insights</div>
+        <div class="card-subtitle">Know yourself</div>
+    </ion-card>
+    <ion-card >
+        <img src="assets/imgs/food-analyser.jpg"/>
+        <div class="card-title">Medical Condition</div>
+        <div class="card-subtitle"></div>
+    </ion-card> -->
     <ion-fab right bottom>
         <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
         <ion-fab-list side="left">
-            <button ion-fab (click)="takePicture()"><ion-icon name="md-camera" class="camera-icon"></ion-icon></button>
+            <button ion-fab (click)="showPrompt()"><ion-icon name="md-camera" class="camera-icon"></ion-icon></button>
             <button ion-fab><ion-icon name="mic"></ion-icon></button>
         </ion-fab-list>
     </ion-fab>

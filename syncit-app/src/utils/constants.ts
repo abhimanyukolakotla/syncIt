@@ -1,3 +1,81 @@
+export const IMAGE_TYPE = {
+    IMAGE_FOOD: 'raw',
+    IMAGE_LABEL: 'label'
+}
+export const MEDICAL_CONDITION_PAGE = {
+  DEFAULT: 'medication'
+} 
+export const medicationConditionResponse = [{
+    "datefrom" : "2011-03-03T09:58:00.000-05:00",
+    "dateto" : "2012-03-21T18:33:00.000-04:00",
+    "dosage" : 0.5,
+    "maxDosage" : 0.0,
+    "refillsRemaining" : 0,
+    "fsId" : 1608,
+    "genericMedicineName" : "simvastatin (bulk) misc",
+    "med" : "SIMVASTATIN (BULK) MISC",
+    "medicinename" : "simvastatin (bulk) misc",
+    "mode" : "Outpatient",
+    "reasonForDiscontinue" : "",
+    "route" : "Miscell. (Med.Supl.;Non-Drugs)",
+    "rxNormCode" : "36567",
+    "score" : 0.0,
+    "source" : "MEDORDER",
+    "status" : "",
+    "strength" : "",
+    "theraClass" : "UNCLASSIFIED DRUG PRODUCTS",
+    "units" : "unit",
+    "use" : "1/2 TAB IN THE EVENING",
+    "ingredientRxNormCode" : "36567"
+  }, {
+    "datefrom" : "2013-03-06T10:12:00.000-05:00",
+    "dateto" : "2013-03-25T13:09:00.000-04:00",
+    "dosage" : 40.0,
+    "maxDosage" : 0.0,
+    "refillsRemaining" : 0,
+    "fsId" : 1661,
+    "genericMedicineName" : "furosemide",
+    "med" : "FUROSEMIDE 20 MG TABLET",
+    "medicinename" : "furosemide",
+    "mode" : "",
+    "reasonForDiscontinue" : "",
+    "route" : "ORAL",
+    "rxNormCode" : "4603",
+    "score" : 0.0,
+    "source" : "MEDORDER",
+    "status" : "",
+    "strength" : "20 mg",
+    "theraClass" : "DIURETICS",
+    "units" : "mg",
+    "use" : "Take 20 mg by mouth twice daily.  ",
+    "ingredientRxNormCode" : "4603"
+  }];
+
+  export const vitalsResponse = [{
+    "encounterId" : "3778-1",
+    "fsId" : 8215,
+    "value" : "184/72",
+    "vitals" : "BLOOD PRESSURE",
+    "vitalsDate" : "2010-12-26T19:30:00.000-05:00"
+  }, {
+    "encounterId" : "3778-1",
+    "fsId" : 8225,
+    "value" : "74",
+    "vitals" : "PULSE",
+    "vitalsDate" : "2010-12-26T19:30:00.000-05:00"
+  }, {
+    "encounterId" : "3778-1",
+    "fsId" : 8235,
+    "value" : "96",
+    "vitals" : "PULSE OXIMETRY",
+    "vitalsDate" : "2010-12-26T19:30:00.000-05:00"
+  }, {
+    "encounterId" : "3778-1",
+    "fsId" : 8245,
+    "value" : "24",
+    "vitals" : "RESPIRATION RATE",
+    "vitalsDate" : "2010-12-26T19:30:00.000-05:00"
+  }];
 export const dataResponse = {
     "results": [
       {

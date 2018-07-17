@@ -7,6 +7,6 @@
   },
   "proxies": [{
     "path": "/api",
-    "proxyUrl": "http://localhost:8888/api"
+    "proxyUrl": "https://syncit-backend-prod.mybluemix.net/backend/"
 }]
 }
