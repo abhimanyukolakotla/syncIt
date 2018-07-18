@@ -8,9 +8,9 @@ import { dataJson, dataResponse, IMAGE_TYPE, medicationConditionResponse, vitals
 @Injectable()
 export class HttpService {
     //USE BELOW FOR LOCAL TESTING
-    //baseUrl = "/api";
+    baseUrl = "/api";
     // USE BELOW FOR APP DEPLOYMENT
-    baseUrl = "https://syncit-backend-prod.mybluemix.net/backend";
+    //baseUrl = "https://syncit-backend-prod.mybluemix.net/backend";
     url     = "/textRecognition";
     
     constructor(private http: Http) {}
@@ -46,11 +46,13 @@ export class HttpService {
 
     sendImageForRecognition(imageData, type) {
         switch(type) {
-            case IMAGE_TYPE.IMAGE_LABEL:
-                return this.performTextRecognition();
+            
             case IMAGE_TYPE.IMAGE_FOOD:
-            default:
                 return this.performImageRecognition();
+            case IMAGE_TYPE.IMAGE_LABEL:
+            default:
+                return this.performTextRecognition();
+            
           
                 
         }

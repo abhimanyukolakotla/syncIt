@@ -30,9 +30,9 @@ var HttpService = /** @class */ (function () {
     function HttpService(http) {
         this.http = http;
         //USE BELOW FOR LOCAL TESTING
-        //baseUrl = "/api";
+        this.baseUrl = "/api";
         // USE BELOW FOR APP DEPLOYMENT
-        this.baseUrl = "https://syncit-backend-prod.mybluemix.net/backend";
+        //baseUrl = "https://syncit-backend-prod.mybluemix.net/backend";
         this.url = "/textRecognition";
     }
     HttpService.prototype.sendImage = function (imageData) {
@@ -59,11 +59,11 @@ var HttpService = /** @class */ (function () {
     };
     HttpService.prototype.sendImageForRecognition = function (imageData, type) {
         switch (type) {
-            case __WEBPACK_IMPORTED_MODULE_4__utils_constants__["a" /* IMAGE_TYPE */].IMAGE_LABEL:
-                return this.performTextRecognition();
             case __WEBPACK_IMPORTED_MODULE_4__utils_constants__["a" /* IMAGE_TYPE */].IMAGE_FOOD:
-            default:
                 return this.performImageRecognition();
+            case __WEBPACK_IMPORTED_MODULE_4__utils_constants__["a" /* IMAGE_TYPE */].IMAGE_LABEL:
+            default:
+                return this.performTextRecognition();
         }
     };
     HttpService.prototype.performImageRecognition = function () {
@@ -94,9 +94,10 @@ var HttpService = /** @class */ (function () {
     };
     HttpService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
     ], HttpService);
     return HttpService;
+    var _a;
 }());
 
 //# sourceMappingURL=http.service.js.map
