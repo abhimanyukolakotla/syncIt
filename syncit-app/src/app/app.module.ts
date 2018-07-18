@@ -17,13 +17,15 @@ import { MediaCapture } from '@ionic-native/media-capture';
 import { Media } from '@ionic-native/media';
 import { File  as IonicFile } from '@ionic-native/file'; 
 import { IonicStorageModule } from '@ionic/storage';
+import { PersonalInsightsPage } from '../pages/personal-insights/personal-insights';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ChartPage,
-    MedicalConditionPage
+    MedicalConditionPage,
+    PersonalInsightsPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { IonicStorageModule } from '@ionic/storage';
     MyApp,
     HomePage,
     ChartPage,
-    MedicalConditionPage
+    MedicalConditionPage,
+    PersonalInsightsPage
   ],
   providers: [
     StatusBar,

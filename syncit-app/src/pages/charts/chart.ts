@@ -52,6 +52,27 @@ export class ChartPage {
     alert.present();
   }
 
+  showPrompt() {
+    const prompt = this.alertCtrl.create({
+      title: 'Should Add to Chart?',
+      buttons: [
+        {
+          text: 'No',
+          handler: data => {
+            console.log('Cancel called, doing nothing');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: data => {           
+            this.addToChart();
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }  
+
   addToChart() {
     this.showAlert('Added to chart successfully!');
   }
@@ -67,7 +88,11 @@ export class ChartPage {
           if(!isUndefined(response.warn)) {
             this.showMessage(response.warn);
           }
-
+          
+          if(this.shouldShowAddButton()) {
+            this.showPrompt();
+          }
+          
           let legend = response['legend'];
           this.options =  {
                 chart: {

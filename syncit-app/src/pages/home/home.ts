@@ -11,6 +11,7 @@ import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ion
 import { Storage } from '@ionic/storage';
 import { Media, MediaObject } from '@ionic-native/media';
 import { File as IonicFile } from '@ionic-native/file';
+import { PersonalInsightsPage } from '../personal-insights/personal-insights';
 
 const MEDIA_FILES_KEY = 'mediaFiles';
 
@@ -62,7 +63,10 @@ export class HomePage {
   goToMedicalConditionPage() {
     this.navCtrl.push(MedicalConditionPage);
   }
-
+  
+  goToPersonalInsightsPage() {
+    this.navCtrl.push(PersonalInsightsPage);
+  }
   captureAudio() {
     /* this.mediaCapture.captureAudio().then(res => {
       //this.storeMediaFiles(res);
@@ -75,7 +79,6 @@ export class HomePage {
       this.stopRecord();
     else
       this.startRecord();
-    
    
   }
 
