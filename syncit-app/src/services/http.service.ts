@@ -8,9 +8,9 @@ import { dataJson, dataResponse, IMAGE_TYPE, medicationConditionResponse, vitals
 @Injectable()
 export class HttpService {
     //USE BELOW FOR LOCAL TESTING
-    baseUrl = "/api";
+    //baseUrl = "/api";
     // USE BELOW FOR APP DEPLOYMENT
-    //baseUrl = "https://syncit-backend-prod.mybluemix.net/backend";
+    baseUrl = "https://syncit-backend-prod.mybluemix.net/backend";
     url     = "/textRecognition";
     
     constructor(private http: Http) {}

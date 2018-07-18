@@ -1,6 +1,6 @@
 
 import { Component, ViewChild } from '@angular/core';
-import { NavParams, LoadingController, Loading, ToastController } from 'ionic-angular';
+import { NavParams, LoadingController, Loading, ToastController, AlertController } from 'ionic-angular';
 import { HttpService } from '../../services/http.service';
 import { transform, isUndefined } from 'lodash';
 
@@ -15,11 +15,13 @@ export class ChartPage {
   data: any;
   imageData: any;
   loader: Loading;
+  showAddButton: boolean = false;
 
   constructor(private httpService: HttpService, 
               private navParams: NavParams, 
               private loadingCtrl: LoadingController,
-              private toastCtrl: ToastController
+              private toastCtrl: ToastController,
+              private alertCtrl: AlertController
             ) {
     this.data = this.navParams.get('data');
     this.imageData = this.navParams.get('image');
@@ -40,8 +42,22 @@ export class ChartPage {
     });
     toast.present();
   }
- ionViewDidLoad() {
-  this.presentLoading();
+
+  showAlert(message) {
+    const alert = this.alertCtrl.create({
+      title: 'Success!',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  addToChart() {
+    this.showAlert('Added to chart successfully!');
+  }
+
+  ionViewDidLoad() {
+   this.presentLoading();
     this.httpService.sendImageForRecognition(this.imageData, this.data)
         .subscribe((response) => {
           this.loader.dismiss();
@@ -70,10 +86,14 @@ export class ChartPage {
                   }
               },
               series: dataArray          
-            };     
+            };   
+            this.shouldShowAddButton();
         });
   }
 
+  shouldShowAddButton() {
+    this.showAddButton = this.imageData != undefined;
+  }
   transformXAxisLabels(responseData) {
     return responseData.results[0].labels;
   }

@@ -30,9 +30,9 @@ var HttpService = /** @class */ (function () {
     function HttpService(http) {
         this.http = http;
         //USE BELOW FOR LOCAL TESTING
-        this.baseUrl = "/api";
+        //baseUrl = "/api";
         // USE BELOW FOR APP DEPLOYMENT
-        //baseUrl = "https://syncit-backend-prod.mybluemix.net/backend";
+        this.baseUrl = "https://syncit-backend-prod.mybluemix.net/backend";
         this.url = "/textRecognition";
     }
     HttpService.prototype.sendImage = function (imageData) {
@@ -94,10 +94,9 @@ var HttpService = /** @class */ (function () {
     };
     HttpService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
     ], HttpService);
     return HttpService;
-    var _a;
 }());
 
 //# sourceMappingURL=http.service.js.map
@@ -587,7 +586,7 @@ var HomePage = /** @class */ (function () {
     ], HomePage.prototype, "barCanvas", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\IBM_ADMIN\Desktop\Projects\hackathon-18\syncIt\syncit-app\src\pages\home\home.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n\n        <ion-title>\n\n            SyncIt\n\n        </ion-title>\n\n       \n\n        <!-- <ion-buttons end>\n\n            <button ion-button icon-only>\n\n                <ion-icon name="search"></ion-icon>\n\n            </button>\n\n            <button color="light" icon-only ion-button (click)="takePicture()">\n\n                <ion-icon name="md-camera" class="camera-icon"></ion-icon>\n\n            </button>    \n\n        </ion-buttons> -->\n\n        <ion-content>\n\n         </ion-content>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="card-background-page" fullscreen padding>\n\n    <!-- <ion-grid>\n\n        <ion-row>\n\n            <ion-col col-4>\n\n                <img [src]="base64Image" *ngIf="base64Image" />\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col col-12>\n\n                <canvas #barCanvas class="chart"></canvas>\n\n            </ion-col>\n\n        </ion-row>\n\n    </ion-grid> -->\n\n    <!-- <canvas #barCanvas class="chart"></canvas> -->\n\n    <!-- <chart class="chart-container" [options]="options"></chart> -->\n\n    <ion-grid>\n\n            <ion-row>\n\n              <ion-col col-12>\n\n                <ion-card (click)="goToOtherPage()">\n\n                   <!--  <img src="assets/imgs/food-dinner-lunch.jpg"/>\n\n                    <div class="card-title">Nutritional Management</div>\n\n                    <div class="card-subtitle">Check your intake amount here</div> -->\n\n                    <img src="assets/imgs/food-dinner-lunch.jpg"/>\n\n                    <ion-card-content>\n\n                        <ion-card-title>\n\n                                Nutritional Management\n\n                        </ion-card-title>\n\n                        <p>Check your intake amount here</p>\n\n                    </ion-card-content>\n\n                </ion-card>\n\n              </ion-col>              \n\n            </ion-row>\n\n            <ion-row>\n\n                <ion-col col-6>\n\n                    <ion-card>\n\n                        <!-- <img src="assets/imgs/ibm-watson.png"/>\n\n                        <div class="card-title" >Personal Insights</div>\n\n                        <div class="card-subtitle">Know yourself</div> -->\n\n                        <img src="assets/imgs/ibm-watson.png"/>\n\n                        <ion-card-content>\n\n                                <ion-card-title>\n\n                                        Personal Insights\n\n                                </ion-card-title>\n\n                                <p>Know yourself</p>\n\n                        </ion-card-content>\n\n                    </ion-card>\n\n                </ion-col>\n\n                <ion-col col-6>\n\n                    <ion-card (click)="goToMedicalConditionPage()">\n\n                        <!-- <img src="assets/imgs/medical-insights.jpg"/>\n\n                        <div class="card-title">Medical Condition</div>\n\n                        <div class="card-subtitle"></div> -->\n\n                        <img src="assets/imgs/medical-insights.jpg"/>\n\n                        <ion-card-content>\n\n                                <ion-card-title>\n\n                                        Medical Condition\n\n                                </ion-card-title>\n\n                                <p>Track your medical condition</p>\n\n                            </ion-card-content>\n\n                    </ion-card>\n\n                </ion-col>\n\n            </ion-row>\n\n          </ion-grid>\n\n    <ion-fab right bottom>\n\n        <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>\n\n        <ion-fab-list side="left">\n\n            <button ion-fab (click)="showPrompt()" color="primary"><ion-icon name="md-camera" class="camera-icon"></ion-icon></button>\n\n            \n\n            <button ion-fab color="secondary" (click)="captureAudio()"> \n\n                <ion-icon name="mic-off" *ngIf="recording"></ion-icon>\n\n                <ion-icon name="mic" *ngIf="!recording"></ion-icon>\n\n            </button>\n\n           <!-- <button ion-fab (click)="captureAudio()" color="secondary"><ion-icon name="mic" ></ion-icon></button> -->\n\n        </ion-fab-list>\n\n    </ion-fab>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\IBM_ADMIN\Desktop\Projects\hackathon-18\syncIt\syncit-app\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\IBM_ADMIN\Desktop\Projects\hackathon-18\syncIt\syncit-app\src\pages\home\home.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n\n        <ion-title>\n\n            <ion-grid>\n\n                <ion-row>\n\n                    <ion-col col-7>SyncIt</ion-col>\n\n                    <ion-col col-5 class="medium-font">Welcome, John Doe</ion-col>\n\n                </ion-row>\n\n            </ion-grid>\n\n        </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="card-background-page" fullscreen padding>\n\n    <ion-grid>\n\n            <ion-row>\n\n              <ion-col col-12>\n\n                <ion-card (click)="goToOtherPage()">\n\n                    <img src="assets/imgs/food-dinner-lunch.jpg"/>\n\n                    <ion-card-content>\n\n                        <ion-card-title>\n\n                                Nutritional Management\n\n                        </ion-card-title>\n\n                        <p>Check your intake amount here</p>\n\n                    </ion-card-content>\n\n                </ion-card>\n\n              </ion-col>              \n\n            </ion-row>\n\n            <ion-row>\n\n                <ion-col col-6>\n\n                    <ion-card>\n\n                        <!-- <img src="assets/imgs/ibm-watson.png"/>\n\n                        <div class="card-title" >Personal Insights</div>\n\n                        <div class="card-subtitle">Know yourself</div> -->\n\n                        <img src="assets/imgs/ibm-watson.png"/>\n\n                        <ion-card-content>\n\n                                <ion-card-title>\n\n                                        Personal Insights\n\n                                </ion-card-title>\n\n                                <p>Know yourself</p>\n\n                        </ion-card-content>\n\n                    </ion-card>\n\n                </ion-col>\n\n                <ion-col col-6>\n\n                    <ion-card (click)="goToMedicalConditionPage()">\n\n                        <!-- <img src="assets/imgs/medical-insights.jpg"/>\n\n                        <div class="card-title">Medical Condition</div>\n\n                        <div class="card-subtitle"></div> -->\n\n                        <img src="assets/imgs/medical-insights.jpg"/>\n\n                        <ion-card-content>\n\n                                <ion-card-title>\n\n                                        Medical Condition\n\n                                </ion-card-title>\n\n                                <p>Track your medical condition</p>\n\n                            </ion-card-content>\n\n                    </ion-card>\n\n                </ion-col>\n\n            </ion-row>\n\n          </ion-grid>\n\n    <ion-fab right bottom>\n\n        <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>\n\n        <ion-fab-list side="left">\n\n            <button ion-fab (click)="showPrompt()" color="primary"><ion-icon name="md-camera" class="camera-icon"></ion-icon></button>\n\n            \n\n            <button ion-fab color="secondary" (click)="captureAudio()"> \n\n                <ion-icon name="mic-off" *ngIf="recording"></ion-icon>\n\n                <ion-icon name="mic" *ngIf="!recording"></ion-icon>\n\n            </button>\n\n           <!-- <button ion-fab (click)="captureAudio()" color="secondary"><ion-icon name="mic" ></ion-icon></button> -->\n\n        </ion-fab-list>\n\n    </ion-fab>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\IBM_ADMIN\Desktop\Projects\hackathon-18\syncIt\syncit-app\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_3__services_http_service__["a" /* HttpService */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */],
@@ -632,11 +631,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ChartPage = /** @class */ (function () {
-    function ChartPage(httpService, navParams, loadingCtrl, toastCtrl) {
+    function ChartPage(httpService, navParams, loadingCtrl, toastCtrl, alertCtrl) {
         this.httpService = httpService;
         this.navParams = navParams;
         this.loadingCtrl = loadingCtrl;
         this.toastCtrl = toastCtrl;
+        this.alertCtrl = alertCtrl;
+        this.showAddButton = false;
         this.data = this.navParams.get('data');
         this.imageData = this.navParams.get('image');
     }
@@ -653,6 +654,17 @@ var ChartPage = /** @class */ (function () {
             showCloseButton: true
         });
         toast.present();
+    };
+    ChartPage.prototype.showAlert = function (message) {
+        var alert = this.alertCtrl.create({
+            title: 'Success!',
+            subTitle: message,
+            buttons: ['OK']
+        });
+        alert.present();
+    };
+    ChartPage.prototype.addToChart = function () {
+        this.showAlert('Added to chart successfully!');
     };
     ChartPage.prototype.ionViewDidLoad = function () {
         var _this = this;
@@ -685,7 +697,11 @@ var ChartPage = /** @class */ (function () {
                 },
                 series: dataArray
             };
+            _this.shouldShowAddButton();
         });
+    };
+    ChartPage.prototype.shouldShowAddButton = function () {
+        this.showAddButton = this.imageData != undefined;
     };
     ChartPage.prototype.transformXAxisLabels = function (responseData) {
         return responseData.results[0].labels;
@@ -696,13 +712,14 @@ var ChartPage = /** @class */ (function () {
         }, []);
     };
     ChartPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\IBM_ADMIN\Desktop\Projects\hackathon-18\syncIt\syncit-app\src\pages\charts\chart.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>Charts</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content class="card-background-page" fullscreen padding>\n\n    <ion-card>\n\n        <chart class="chart-container" [options]="options"></chart>\n\n    </ion-card>\n\n</ion-content>\n\n    '/*ion-inline-end:"C:\Users\IBM_ADMIN\Desktop\Projects\hackathon-18\syncIt\syncit-app\src\pages\charts\chart.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\IBM_ADMIN\Desktop\Projects\hackathon-18\syncIt\syncit-app\src\pages\charts\chart.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>Charts</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content class="card-background-page" fullscreen padding>\n\n    <ion-card>\n\n        <chart class="chart-container" [options]="options"></chart>\n\n    </ion-card>\n\n    <ion-fab right bottom *ngIf="showAddButton">\n\n        <button ion-fab mini color="primary" (click)="addToChart()">\n\n            <ion-icon name="add"></ion-icon>\n\n        </button>\n\n    </ion-fab>\n\n</ion-content>\n\n    '/*ion-inline-end:"C:\Users\IBM_ADMIN\Desktop\Projects\hackathon-18\syncIt\syncit-app\src\pages\charts\chart.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__services_http_service__["a" /* HttpService */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_http_service__["a" /* HttpService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], ChartPage);
     return ChartPage;
 }());

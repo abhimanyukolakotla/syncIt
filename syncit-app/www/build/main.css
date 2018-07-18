@@ -25716,6 +25716,10 @@ page-home .card-background-page .card-subtitle {
   color: #fff;
 }
 
+page-home .medium-font {
+  font-size: 0.75em;
+}
+
 .table-header {
   background: #488aff;
   color: #fff;
