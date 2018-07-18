@@ -23,8 +23,6 @@ export class ChartPage {
               private toastCtrl: ToastController,
               private alertCtrl: AlertController
             ) {
-    this.data = this.navParams.get('data');
-    this.imageData = this.navParams.get('image');
   }
 
   presentLoading() {
@@ -78,7 +76,10 @@ export class ChartPage {
   }
 
   ionViewDidLoad() {
-   this.presentLoading();
+    this.data = this.navParams.get('data');
+    this.imageData = this.navParams.get('image');
+    this.presentLoading();
+
     this.httpService.sendImageForRecognition(this.imageData, this.data)
         .subscribe((response) => {
           this.loader.dismiss();
@@ -88,11 +89,13 @@ export class ChartPage {
           if(!isUndefined(response.warn)) {
             this.showMessage(response.warn);
           }
-          
-          if(this.shouldShowAddButton()) {
+        
+          this.shouldShowAddButton();
+         //this.showAlert(this.shouldShowAddButton());
+         if(this.shouldShowAddButton()) {
             this.showPrompt();
           }
-          
+
           let legend = response['legend'];
           this.options =  {
                 chart: {
@@ -112,12 +115,14 @@ export class ChartPage {
               },
               series: dataArray          
             };   
-            this.shouldShowAddButton();
+            //this.shouldShowAddButton();
         });
   }
 
   shouldShowAddButton() {
-    this.showAddButton = this.imageData != undefined;
+    let noImage = this.navParams.get('no-image')
+    //this.showAddButton = (this.imageData != undefined) || (this.imageData != null);
+    return !noImage;//this.showAddButton;
   }
   transformXAxisLabels(responseData) {
     return responseData.results[0].labels;

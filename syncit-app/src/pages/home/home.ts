@@ -57,11 +57,11 @@ export class HomePage {
   }
 
   goToOtherPage(data) {
-    this.navCtrl.push(ChartPage, {'data': data, 'image': this.base64Image});
+    this.navCtrl.push(ChartPage, {'data': data, 'image': this.base64Image, 'no-image': (data === null || data === undefined)});
   }
 
   goToMedicalConditionPage() {
-    this.navCtrl.push(MedicalConditionPage);
+    this.navCtrl.push(MedicalConditionPage, {'image': null});
   }
   
   goToPersonalInsightsPage() {
